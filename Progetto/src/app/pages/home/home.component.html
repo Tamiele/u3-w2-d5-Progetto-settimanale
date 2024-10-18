@@ -1,0 +1,68 @@
+<body class="d-flex flex-column vh-100">
+  <header class="app-navbar position-sticky z-1 top-0"></header>
+  <main class="flex-grow-1 animated">
+    <div class="container justify-content-center mt-2">
+      <h1 class="text-center">TaskMaster</h1>
+      <h5 class="text-center">Accomplish your goals, one task at a time</h5>
+      <form>
+        <div class="mb-3">
+          <input
+            [(ngModel)]="searchTerm"
+            name="search"
+            type="text"
+            placeholder="Search Author..."
+            class="form-control border-black"
+          />
+        </div>
+        <button type="button" class="btn btn-dark">Search</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div
+          *ngFor="let arr of filteredArrayTodoHome()"
+          class="col-lg-4 col-md-6 col-sm-12 mb-4"
+        >
+          <div class="card shadow d-flex flex-column h-100">
+            <img
+              [src]="
+                arr.completed ? 'noteCompleted.webp' : 'incompletedNote.webp'
+              "
+              class="card-img-top"
+              alt="Immagine di esempio"
+            />
+
+            <div class="card-body flex-grow-1">
+              <h5 class="card-title text-center mb-4">
+                Author: {{ arr.arrayUser?.firstName }}
+                {{ arr.arrayUser?.lastName }}
+              </h5>
+
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span> <b>Task:</b> {{ arr.todo }}</span>
+                  <input
+                    class="form-check-input border-black ms-2"
+                    type="checkbox"
+                    value=""
+                    id="task1"
+                    [(ngModel)]="arr.completed"
+                  />
+                </li>
+              </ul>
+            </div>
+
+            <div class="card-footer text-center">
+              <button class="btn btn-dark">Aggiungi Task</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer"></footer>
+</body>

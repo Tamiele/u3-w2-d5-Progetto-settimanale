@@ -1,0 +1,50 @@
+<body class="d-flex flex-column vh-100">
+  <header class="app-navbar position-sticky z-1 top-0"></header>
+  <main class="flex-grow-1 animated">
+    <div class="container justify-content-center">
+      <h1 class="text-center">Completed tasks</h1>
+    </div>
+    <div class="container mt-5">
+      <div class="row">
+        <div
+          *ngFor="let arr of arrayTodoCompleted"
+          class="col-lg-4 col-md-6 col-sm-12 mb-4"
+        >
+          <div class="card shadow-sm animated-card h-100">
+            <img
+              [src]="
+                arr.completed ? 'noteCompleted.webp' : 'incompletedNote.webp'
+              "
+              class="card-img-top"
+              alt="Immagine di esempio"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title text-center mb-4">
+                Author:
+                {{ arr.arrayUser?.firstName }}
+                {{ arr.arrayUser?.lastName }}
+              </h5>
+
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span><b>Task:</b> {{ arr.todo }}</span>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="task1"
+                    [(ngModel)]="arr.completed"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="app-footer"></footer>
+</body>
