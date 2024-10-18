@@ -11,6 +11,9 @@ import { iTodo } from '../../interfaces/i-todo';
 export class CompletedComponent implements OnInit {
   constructor(private userSvc: AutoriService, private todoSvc: TodoService) {}
   arrayTodoCompleted: iTodo[] = [];
+
+  taskDestroy: boolean = false;
+
   ngOnInit(): void {
     this.todoSvc.getTodo(this.userSvc.arrayUser);
 
@@ -19,5 +22,13 @@ export class CompletedComponent implements OnInit {
     this.arrayTodoCompleted = this.todoSvc.filterCompletedTodo(
       this.arrayTodoCompleted
     );
+  }
+  onTaskChange(todo: iTodo): void {
+    if (!todo.completed) {
+      const index = this.arrayTodoCompleted.indexOf(todo);
+      if (index > -1) {
+        this.arrayTodoCompleted.splice(index, 1);
+      }
+    }
   }
 }

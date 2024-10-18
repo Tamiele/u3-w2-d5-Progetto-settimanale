@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     this.arrayTodoHome = this.todoSvc.arrayTodo;
   }
 
-  filteredArrayTodoHome() {
+  filteredArrayTodoHome(): iTodo[] {
     if (!this.searchTerm) {
       return this.arrayTodoHome;
     }
